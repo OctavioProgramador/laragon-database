@@ -8,8 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use Spatie\Permission\Traits\HasRoles;
+
 class User extends Authenticatable
 {
+    use HasRoles;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -59,11 +62,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Video');
     }
-    // Relación muchos a muchos
-
-    public function roles(){
-        return $this->belongsToMany('App\Models\Role');
-    }
+  
 
     // Relación uno a uno polimorfica 
 
