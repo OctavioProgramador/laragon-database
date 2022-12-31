@@ -20,4 +20,14 @@ class Post extends Model
         return $this->belongsTo('App\Models\Categoria');
     }
       
+    // Relación uno a muchos polimorfica
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comments', 'commentable');
+    }
+
+    // Relación muchos a muchos polimórfica
+    public function tags(){
+        return $this->morphToMany('App\Models\Tag', 'taggable');
+    }
 }
